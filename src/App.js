@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from  './App.css';
 // import styled from 'styled-components';
 import Person from "./Person/Person";
 import person from './Person/Person';
-
+// import ErrorBoundry from './ErrorBoundry/ErrorBoundry';
 // const StyledButton = styled.button`
 //       background-color: ${props => props.alt ? 'red' : 'green'};
 //       color: white;
@@ -66,26 +66,25 @@ class App extends Component {
   }
 
   render() {
-    //inline style is added in this way
-    const style = {
-      
-    }
-
+   
     //assign the persons to a variable and then change the value as per the click
     let persons = null;
+    let btnClass = [classes.Button];
     if (this.state.showPersons) {
       persons = (
         <div>
           {/* use a map to define a list */}
           {this.state.persons.map((person, index) => {
             return (
-              <Person
+             
+                <Person
                 key={person.id}
                 click={() => this.deletePersonHandler(index)}
                 name={person.name}
                 age={person.age}
                 changed={(event) => this.nameChangedHandler(event, person.id)}
               />
+                       
             );
           })}
 
@@ -97,20 +96,21 @@ class App extends Component {
       //   backgroundColor:'salmon',
       //   color:'black'
       // }
+      btnClass.push(classes.red);
     }
 
-    const classes = [];
+    const assignedClasses = [];
     if (this.state.persons.length <= 2) {
-      classes.push('red');
+      assignedClasses.push(classes.red);
     }
     if (this.state.persons.length <= 1) {
-      classes.push('bold');
+      assignedClasses.push(classes.bold);
     }
 
     return (
-      <div className="App">
-        <p className={classes.join(' ')}>This is working</p>
-        <button style={style} onClick={this.togglePersonsHandler}>Swith Name</button>
+      <div className={classes.App}>
+        <p className={assignedClasses.join(' ')}>This is working</p>
+        <button className={btnClass.join(' ')} onClick={this.togglePersonsHandler}>Swith Name</button>
         {persons}
       </div>
     );

@@ -22,7 +22,12 @@ const person = (props) => {
     //         width: '60%'
     //     }
     // }
+    // const rnd = Math.random();
+    // if(rnd > 0.7){
+    //     throw new Error('Something went wrong');
+    // }
     return (
+        
         <div>
             <p onClick={props.click}>I am a {props.name}, and I am {props.age} years old!</p>
             <p>{props.children}</p>
